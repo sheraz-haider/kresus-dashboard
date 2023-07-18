@@ -9,8 +9,12 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
+import { api } from "src/utils/axios";
+import { useRouter } from "next/router";
 
 export const AddNewDapp = () => {
+  const router = useRouter();
+
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -25,8 +29,16 @@ export const AddNewDapp = () => {
     }));
   }, []);
 
-  const handleSubmit = useCallback((event) => {
+  const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
+
+    try {
+      await api.post("/dapp", values);
+
+      router.push("/dapps");
+    } catch (err) {
+      console.error(err);
+    }
   }, []);
 
   return (
@@ -60,10 +72,10 @@ export const AddNewDapp = () => {
             <TextField
               style={{ marginBottom: 10 }}
               fullWidth
-              label="Description"
-              name="description"
+              label="Website URL"
+              name="url"
               onChange={handleChange}
-              value={values.description}
+              value={values.url}
             />
             <TextField
               inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
@@ -72,13 +84,15 @@ export const AddNewDapp = () => {
               name="amount"
               onChange={handleChange}
               value={values.amount}
-              // type='number'
+              type="number"
             />
           </Stack>
         </CardContent>
         <Divider />
         <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button variant="contained">Add</Button>
+          <Button variant="contained" onClick={handleSubmit}>
+            Add
+          </Button>
         </CardActions>
       </Card>
     </form>
