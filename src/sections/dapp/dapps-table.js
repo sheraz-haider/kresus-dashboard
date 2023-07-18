@@ -87,7 +87,9 @@ export const DappsTable = (props) => {
                 const createdAt = dayjs(dapp.createdAt).format("DD/MM/YYYY");
 
                 return (
-                  <TableRow hover key={dapp.id} selected={isSelected}>
+                  <TableRow hover
+key={dapp.id}
+selected={isSelected}>
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={isSelected}
@@ -101,7 +103,9 @@ export const DappsTable = (props) => {
                       />
                     </TableCell>
                     <TableCell>
-                      <Stack alignItems="center" direction="row" spacing={2}>
+                      <Stack alignItems="center"
+direction="row"
+spacing={2}>
                         <Avatar src={dapp.avatar}>{getInitials(dapp.name)}</Avatar>
                         <Typography variant="subtitle2">{dapp.name}</Typography>
                       </Stack>
@@ -110,7 +114,8 @@ export const DappsTable = (props) => {
                     <TableCell>${dapp.amount}</TableCell>
                     <TableCell>{createdAt}</TableCell>
                     <TableCell>
-                      <Button style={{ marginRight: "10px" }} variant="outlined">
+                      <Button style={{ marginRight: "10px" }}
+variant="outlined">
                         Details
                       </Button>
                       <Button
@@ -212,7 +217,8 @@ export const DappsTable = (props) => {
         <Divider />
 
         <DialogActions>
-          <Button autoFocus onClick={() => setOpen(false)}>
+          <Button autoFocus
+onClick={() => setOpen(false)}>
             Close
           </Button>
         </DialogActions>

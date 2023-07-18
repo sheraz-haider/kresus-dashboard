@@ -22,14 +22,14 @@ export const AddNewDapp = () => {
     amount: "",
   });
 
-  const handleChange = useCallback((event) => {
+  const handleChange = (event) => {
     setValues((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
-  }, []);
+  };
 
-  const handleSubmit = useCallback(async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
@@ -39,7 +39,7 @@ export const AddNewDapp = () => {
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -50,7 +50,8 @@ export const AddNewDapp = () => {
         />
         <Divider />
         <CardContent>
-          <Stack spacing={3} sx={{ maxWidth: 400 }}>
+          <Stack spacing={3}
+sx={{ maxWidth: 400 }}>
             <TextField
               style={{ marginBottom: 10 }}
               fullWidth
@@ -90,7 +91,8 @@ export const AddNewDapp = () => {
         </CardContent>
         <Divider />
         <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button variant="contained" onClick={handleSubmit}>
+          <Button variant="contained"
+onClick={handleSubmit}>
             Add
           </Button>
         </CardActions>
