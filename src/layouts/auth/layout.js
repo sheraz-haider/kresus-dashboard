@@ -40,7 +40,7 @@ export const Layout = (props) => {
               width: '100%'
             }}
           >
-            <Box
+            {/* <Box
               component={NextLink}
               href="/"
               sx={{
@@ -50,7 +50,7 @@ export const Layout = (props) => {
               }}
             >
               <Logo />
-            </Box>
+            </Box> */}
           </Box>
           {children}
         </Grid>
@@ -59,7 +59,7 @@ export const Layout = (props) => {
           lg={6}
           sx={{
             alignItems: 'center',
-            background: 'radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%)',
+            background: '#3D6ED1',
             color: 'white',
             display: 'flex',
             justifyContent: 'center',
@@ -75,29 +75,28 @@ export const Layout = (props) => {
               sx={{
                 fontSize: '24px',
                 lineHeight: '32px',
-                mb: 1
+                mb: 1,
               }}
+              textAlign={'center'}
               variant="h1"
             >
-              Welcome to{' '}
-              <Box
-                component="a"
-                sx={{ color: '#15B79E' }}
-                target="_blank"
-              >
-                Devias Kit
-              </Box>
+              <img 
+                src="https://www.kresus.com/wp-content/uploads/2022/04/kresus-primary-logo-lockup-white.png"
+                alt="" 
+              />
             </Typography>
-            <Typography
-              align="center"
-              sx={{ mb: 3 }}
-              variant="subtitle1"
-            >
-              A professional kit that comes with ready-to-use MUI components.
-            </Typography>
+
+            
             <img
               alt=""
-              src="/assets/auth-illustration.svg"
+              src="https://www.kresus.com/wp-content/uploads/2023/03/Animation-3.gif"
+              style={{
+                width: '50%',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                display: 'block',
+                marginTop: '50px'
+              }}
             />
           </Box>
         </Grid>
