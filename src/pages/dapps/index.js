@@ -13,33 +13,6 @@ import { useRouter } from "next/router";
 
 const now = new Date();
 
-const data = [
-  {
-    id: "5e887ac47eed253091be10cb",
-    avatar: "/assets/avatars/avatar-carson-darrin.png",
-    name: "Uniswap",
-    website: "https://uniswap.org/",
-    signupReward: 2,
-    createdAt: subDays(subHours(now, 7), 1).getTime(),
-  },
-  {
-    id: "5e887ac47eed253091be10cb",
-    avatar: "/assets/avatars/avatar-carson-darrin.png",
-    name: "Quickswap",
-    website: "https://quickswap.org/",
-    signupReward: 2,
-    createdAt: subDays(subHours(now, 7), 1).getTime(),
-  },
-  {
-    id: "5e887ac47eed253091be10cb",
-    avatar: "/assets/avatars/avatar-carson-darrin.png",
-    name: "OpenSea",
-    website: "https://opensea.org/",
-    signupReward: 2,
-    createdAt: subDays(subHours(now, 7), 1).getTime(),
-  },
-];
-
 const useCustomers = (page, rowsPerPage, data) => {
   return useMemo(() => {
     return applyPagination(data, page, rowsPerPage);
@@ -108,7 +81,7 @@ spacing={1}></Stack>
             </Stack>
             <DappsSearch />
             <DappsTable
-              count={data.length}
+              count={customers.length}
               items={customers}
               onDeselectAll={customersSelection.handleDeselectAll}
               onDeselectOne={customersSelection.handleDeselectOne}

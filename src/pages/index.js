@@ -12,10 +12,6 @@ import { OverviewTotalProfit } from "src/sections/overview/overview-total-profit
 import { OverviewTraffic } from "src/sections/overview/overview-traffic";
 import { api } from "src/utils/axios";
 
-const now = new Date();
-
-let total = 0;
-
 const Page = ({ stats }) => {
   console.log({ stats });
 

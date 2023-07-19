@@ -27,6 +27,7 @@ import { Scrollbar } from "src/components/scrollbar";
 import { getInitials } from "src/utils/get-initials";
 import dayjs from "dayjs";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export const DappsTable = (props) => {
   const {
@@ -49,7 +50,7 @@ export const DappsTable = (props) => {
   const [open, setOpen] = useState(false);
   const [dappId, setDappId] = useState("");
 
-  console.log({ dappId });
+  const router = useRouter();
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -87,9 +88,7 @@ export const DappsTable = (props) => {
                 const createdAt = dayjs(dapp.createdAt).format("DD/MM/YYYY");
 
                 return (
-                  <TableRow hover
-key={dapp.id}
-selected={isSelected}>
+                  <TableRow hover key={dapp.id} selected={isSelected}>
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={isSelected}
@@ -103,9 +102,7 @@ selected={isSelected}>
                       />
                     </TableCell>
                     <TableCell>
-                      <Stack alignItems="center"
-direction="row"
-spacing={2}>
+                      <Stack alignItems="center" direction="row" spacing={2}>
                         <Avatar src={dapp.avatar}>{getInitials(dapp.name)}</Avatar>
                         <Typography variant="subtitle2">{dapp.name}</Typography>
                       </Stack>
@@ -114,8 +111,13 @@ spacing={2}>
                     <TableCell>${dapp.amount}</TableCell>
                     <TableCell>{createdAt}</TableCell>
                     <TableCell>
-                      <Button style={{ marginRight: "10px" }}
-variant="outlined">
+                      <Button
+                        style={{ marginRight: "10px" }}
+                        variant="outlined"
+                        onClick={() => {
+                          router.push(`/dapps/${dapp.unique_code}`);
+                        }}
+                      >
                         Details
                       </Button>
                       <Button
@@ -217,8 +219,7 @@ variant="outlined">
         <Divider />
 
         <DialogActions>
-          <Button autoFocus
-onClick={() => setOpen(false)}>
+          <Button autoFocus onClick={() => setOpen(false)}>
             Close
           </Button>
         </DialogActions>
