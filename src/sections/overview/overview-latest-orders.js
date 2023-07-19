@@ -17,6 +17,8 @@ import {
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
 import { SeverityPill } from 'src/components/severity-pill';
+import { useMemo } from 'react';
+import dayjs from 'dayjs';
 
 const statusMap = {
   pending: 'warning',
@@ -25,21 +27,23 @@ const statusMap = {
 };
 
 export const OverviewLatestOrders = (props) => {
-  const { orders = [], sx } = props;
+  const { orders = [], sx, latestEmails = [] } = props;
 
+  const emails = useMemo(() => latestEmails.slice(0, 10), [latestEmails])
+  
   return (
     <Card sx={sx}>
-      <CardHeader title="Latest Orders" />
+      <CardHeader title="Latest Signups" />
       <Scrollbar sx={{ flexGrow: 1 }}>
         <Box sx={{ minWidth: 800 }}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>
-                  Order
+                  User Email 
                 </TableCell>
                 <TableCell>
-                  Customer
+                  dApp Name
                 </TableCell>
                 <TableCell sortDirection="desc">
                   Date
@@ -50,26 +54,26 @@ export const OverviewLatestOrders = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.map((order) => {
-                const createdAt = format(order.createdAt, 'dd/MM/yyyy');
+              {emails.map((item) => {
+                const createdAt = dayjs(item.created_at).format('DD/MM/YYYY');
 
                 return (
                   <TableRow
                     hover
-                    key={order.id}
+                    key={item.email}
                   >
                     <TableCell>
-                      {order.ref}
+                      {item.email}
                     </TableCell>
                     <TableCell>
-                      {order.customer.name}
+                      {item.dapp_name}
                     </TableCell>
                     <TableCell>
                       {createdAt}
                     </TableCell>
                     <TableCell>
-                      <SeverityPill color={statusMap[order.status]}>
-                        {order.status}
+                      <SeverityPill color={item.is_email_verified ? 'success' : 'warning'}>
+                        {item.is_email_verified ? 'Verified' : 'Not Verified'}
                       </SeverityPill>
                     </TableCell>
                   </TableRow>

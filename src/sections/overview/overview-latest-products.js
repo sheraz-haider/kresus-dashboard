@@ -18,28 +18,27 @@ import {
 } from '@mui/material';
 
 export const OverviewLatestProducts = (props) => {
-  const { products = [], sx } = props;
+  const { sx, topDapps = [] } = props;
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Latest Products" />
+      <CardHeader title="Top 3 dApps" />
       <List>
-        {products.map((product, index) => {
-          const hasDivider = index < products.length - 1;
-          const ago = formatDistanceToNow(product.updatedAt);
+        {topDapps.map((dapp, index) => {
+          const hasDivider = index < topDapps.length - 1;
 
           return (
             <ListItem
               divider={hasDivider}
-              key={product.id}
+              key={dapp.id}
             >
               <ListItemAvatar>
                 {
-                  product.image
+                  dapp.image
                     ? (
                       <Box
                         component="img"
-                        src={product.image}
+                        src={dapp.image}
                         sx={{
                           borderRadius: 1,
                           height: 48,
@@ -60,16 +59,16 @@ export const OverviewLatestProducts = (props) => {
                 }
               </ListItemAvatar>
               <ListItemText
-                primary={product.name}
+                primary={dapp.dapp_name}
                 primaryTypographyProps={{ variant: 'subtitle1' }}
-                secondary={`Updated ${ago} ago`}
+                secondary={`Brought ${dapp.count} signups in total`}
                 secondaryTypographyProps={{ variant: 'body2' }}
               />
-              <IconButton edge="end">
+              {/* <IconButton edge="end">
                 <SvgIcon>
                   <EllipsisVerticalIcon />
                 </SvgIcon>
-              </IconButton>
+              </IconButton> */}
             </ListItem>
           );
         })}
